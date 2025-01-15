@@ -83,9 +83,16 @@
     </style>
 </head>
 <body>
-    <form method="post" action="/Bergamasco/elefanti.php">
+    <form method="post" action="elefanti/">
         Quanti elefanti vuoi veder dondolare?
         <input type="number" name="elefanti" min="1" max="200" value="3">
+        <br>
+        <button type="submit">Conferma!</button>
+        <button type="reset">Cancella!</button>
+    </form>
+    <form method="post" action="biblioteca/">
+        Quale autore vuoi trovare? [Cognome]
+        <input type="text" name="autore">
         <br>
         <button type="submit">Conferma!</button>
         <button type="reset">Cancella!</button>
