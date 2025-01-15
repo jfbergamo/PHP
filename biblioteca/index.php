@@ -13,6 +13,7 @@
     $autore = $_POST['autore'];
     $query = "SELECT Titolo FROM Libri JOIN Autori ON ID_Autore = FK_ID_Autore WHERE Cognome = '$autore'";
     $res = $conn->query($query);
+    
     if ($res == false) {
         echo("Errore nella query! " . mysqli_error($conn));
     } else {
@@ -23,7 +24,7 @@
         echo "</tr>";
 
         while ($riga = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
-            $titolo = $riga["titolo"];
+            $titolo = $riga["Titolo"];
             echo "<tr>";
             echo "<td>$titolo</td>";
             echo "</tr>";
