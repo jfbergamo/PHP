@@ -12,7 +12,7 @@
 
     $autore = $_POST['autore'];
     $query = "SELECT Titolo, Nome, Cognome FROM Libri JOIN Autori ON ID_Autore = FK_ID_Autore WHERE Cognome = '$autore'";
-    $res = $conn->query($query);
+    $res = $db->query($query);
     
     if ($res == false) {
         echo("Errore nella query! " . mysqli_error($conn));
