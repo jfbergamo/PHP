@@ -10,12 +10,14 @@
 
     include_once("connessione.php");
 
-    $autore = $_POST['autore'];
-    $query = "SELECT Titolo, Nome, Cognome FROM Libri JOIN Autori ON ID_Autore = FK_ID_Autore WHERE Cognome = '$autore'";
+    $autore = isset($_POST['autore']) ? $_POST['autore'] : '';
+    $query = "SELECT Titolo, Nome, Cognome
+              FROM Libri JOIN Autori ON ID_Autore = FK_ID_Autore 
+              WHERE Cognome = '$autore'";
     $res = $db->query($query);
     
-    if ($res == false) {
-        echo("Errore nella query! " . mysqli_error($conn));
+    if ($res->num_rows <= 0) {
+        echo "    <h1>Nessun libro e' stato trovato per l'autore $autore!</h1>" . "\n";
     } else {
         echo '<h1>Libri dell\'autore</h1>' . "\n";
         echo '    <table>' . "\n";
