@@ -30,6 +30,7 @@ function nomeEsercizio($esercizio) {
         echo nomeEsercizio($esercizio);
         ?>
     </title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         /* Impostazioni di base per il body */
         body {
@@ -41,26 +42,26 @@ function nomeEsercizio($esercizio) {
         }
         
         /* Stile per l'header */
-        header {
+        nav {
             background-color: #40194d;
             padding: 10px;
             color: white;
             text-align: center;
         }
         
-        header form {
+        nav form {
             display: inline-block;
             margin: 0;
         }
         
         /* Stile per il selettore e il bottone nell'header */
-        header select {
+        nav select {
             padding: 8px;
             margin-right: 10px;
             font-size: 16px;
         }
         
-        header button {
+        nav button {
             padding: 8px 16px;
             background-color: #45a049;
             border: none;
@@ -69,7 +70,7 @@ function nomeEsercizio($esercizio) {
             font-size: 16px;
         }
         
-        header button:hover {
+        nav button:hover {
             background-color: #388e3c;
         }
         
@@ -128,7 +129,7 @@ function nomeEsercizio($esercizio) {
     </style>
 </head>
 <body>
-    <header>
+    <nav>
         <form method="get">
             <select name="esercizio">
                 <option value="biblioteca">02 - Biblioteca</option>
@@ -136,7 +137,7 @@ function nomeEsercizio($esercizio) {
             </select>
             <button action="submit">Conferma</button>
         </form>
-    </header>
+    </nav>
     <?php
     switch ($esercizio) {
         case "elefante":

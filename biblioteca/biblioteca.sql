@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 15, 2025 alle 10:00
+-- Creato il: Gen 16, 2025 alle 12:05
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -74,7 +74,8 @@ INSERT INTO `libri` (`ID_Libro`, `Titolo`, `FK_ID_Autore`) VALUES
 (7, 'Biografia Andrea Rotolo', 8),
 (8, 'Come hackerare i tuoi vicini', 10),
 (9, 'Come NON scegliere le componenti di un PC nel 2025', 10),
-(10, 'Come investire 10k euro e perdere tutto', 6);
+(10, 'Come investire 10k euro e perdere tutto', 6),
+(11, 'Il codice di Mandra', 9);
 
 --
 -- Indici per le tabelle scaricate
@@ -107,7 +108,7 @@ ALTER TABLE `autori`
 -- AUTO_INCREMENT per la tabella `libri`
 --
 ALTER TABLE `libri`
-  MODIFY `ID_Libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_Libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Limiti per le tabelle scaricate

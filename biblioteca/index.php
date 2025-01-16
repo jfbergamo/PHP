@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Biblioteca</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
 </head>
 <body>
     <?php
@@ -17,7 +18,7 @@
     $res = $db->query($query);
     
     if ($res->num_rows <= 0) {
-        echo "    <h1>Nessun libro e' stato trovato per l'autore $autore!</h1>" . "\n";
+        echo "    <h1>Nessun libro è stato trovato per l'autore $autore!</h1>" . "\n";
     } else {
         echo '<h1>Libri dell\'autore</h1>' . "\n";
         echo '    <table>' . "\n";
