@@ -6,7 +6,7 @@ function stampa_filastrocca($i) {
     echo ($first ? "Un" : $i) . " elefant" . ($first ? "e" : "i") . " si dondolava" . ($first ? "" : "no") . "<br>";
     echo "sopra il filo di una ragnatela" . "<br>";
     echo "e ritenendo la cosa interessante" . "<br>";
-    echo "and" . ($first ? "o'" : "arono") . " a chiamare un altro elefante!" . "<br>";
+    echo "and" . ($first ? "ò" : "arono") . " a chiamare un altro elefante!" . "<br>";
     echo "</p>";
 }
 
