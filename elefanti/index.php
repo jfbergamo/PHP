@@ -21,7 +21,7 @@ function stampa_filastrocca($i) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
+            background-color: #ffffff;
             color: #333;
             justify-content: center;
             align-items: center;
@@ -59,7 +59,7 @@ function stampa_filastrocca($i) {
 
 ?>
     <div display="flex">
-        <img height="250" src="imgs/elefante.gif">
+        <img height="250" src="imgs/elefante.png">
         <?php
 
         if ($n == 20) {
