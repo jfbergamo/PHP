@@ -2,12 +2,18 @@
 
 function stampa_filastrocca($i) {
     $first = $i <= 1;
-    echo "<p>";
-    echo ($first ? "Un" : $i) . " elefant" . ($first ? "e" : "i") . " si dondolava" . ($first ? "" : "no") . "<br>";
-    echo "sopra il filo di una ragnatela" . "<br>";
-    echo "e ritenendo la cosa interessante" . "<br>";
-    echo "and" . ($first ? "ò" : "arono") . " a chiamare un altro elefante!" . "<br>";
-    echo "</p>";
+    ?>
+    <p>
+        <?php echo($first ? "Un" : $i)?> elefant<?php echo($first ? "e" : "i")?> si dondolava<?php echo($first ? "" : "no")?>
+        <br>
+        sopra il filo di una ragnatela
+        <br>
+        e ritenendo la cosa interessante
+        <br>
+        and<?php echo($first ? "ò" : "arono")?>  a chiamare un altro elefante!
+        <br>
+    </p>
+    <?php
 }
 
 ?>
@@ -32,8 +38,7 @@ function stampa_filastrocca($i) {
     </style>
 </head>
 <body>
-<?php
-    
+    <?php
     $elefanti = $_POST['elefanti'] ?? 1;
     $n = (is_numeric($elefanti)) ? $elefanti : 1;
 
@@ -42,31 +47,40 @@ function stampa_filastrocca($i) {
     }
     
     if ($n > 1) {
-        echo "<p>";
-        echo "Il ragno che li vide pensò tutt'in un botto:" . "<br>";
-        echo "\"Un altro che ne arriva, andiam tutti di sotto!\"." . "<br>";
-        echo "</p>";
+    ?>
+        <p>
+            Il ragno che li vide pensò tutt'in un botto:
+            <br>
+            "Un altro che ne arriva, andiam tutti di sotto!"
+            <br>
+        </p>
         
+        <?php
         for ($i = $n; $i > 0; $i--) {
             stampa_filastrocca($i);
-        }
+        } ?>
         
-        echo "<p>";
-        echo "Il ragno sospirò, si sentiva sollevato!" . "<br>";
-        echo "Mangiò una mosca mora e si leccò il palato." . "<br>";
-        echo "</p>";
+        <p>
+            Il ragno sospirò, si sentiva sollevato!
+            <br>
+            Mangiò una mosca mora e si leccò il palato.
+            <br>
+        </p>
+    <?php
     }
+    ?>
 
-?>
     <div display="flex">
         <img height="250" src="imgs/elefante.png">
-        <?php
-
-        if ($n == 20) {
-            echo "<img height='250' src='imgs/spider.png'>";
-        }
         
+        <?php
+        if ($n == 20) {
         ?>
+            <img height='250' src='imgs/spider.png'>
+        <?php
+        }
+        ?>
+        
     </div>
 </body>
 </html>

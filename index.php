@@ -140,24 +140,24 @@ function nomeEsercizio($esercizio) {
     </nav>
     <?php
     switch ($esercizio) {
-        case "elefante":
-            echo '    <form method="post" action="elefanti/">' . "\n";
-            echo '        Quanti elefanti vuoi veder dondolare?' . "\n";
-            echo '        <input type="number" name="elefanti" min="1" max="200" value="3">' . "\n";
-            echo '        <br>' . "\n";
-            echo '        <button type="submit">Conferma!</button>' . "\n";
-            echo '        <button type="reset">Cancella!</button>' . "\n";
-            echo '    </form>' . "\n";
-            break;
-        case "biblioteca":
-            echo '    <form method="post" action="biblioteca/">' . "\n";
-            echo '        Quale autore vuoi trovare? [Cognome]' . "\n";
-            echo '        <input type="text" name="autore">' . "\n";
-            echo '        <br>' . "\n";
-            echo '        <button type="submit">Conferma!</button>' . "\n";
-            echo '        <button type="reset">Cancella!</button>' . "\n";
-            echo '    </form>' . "\n";
-            break;
+    case "elefante": ?>
+        <form method="post" action="elefanti/">
+            Quanti elefanti vuoi veder dondolare?
+            <input type="number" name="elefanti" min="1" max="200" value="3">
+            <br>
+            <button type="submit">Conferma!</button>
+            <button type="reset">Cancella!</button>
+        </form>
+        <?php break;
+    case "biblioteca": ?>
+        <form method="post" action="biblioteca/">
+            Quale autore vuoi trovare? [Cognome]
+            <input type="text" name="autore">
+            <br>
+            <button type="submit">Conferma!</button>
+            <button type="reset">Cancella!</button>
+        </form>
+        <?php break;
     }
     ?>
 </body>
