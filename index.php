@@ -26,9 +26,7 @@ function nomeEsercizio($esercizio) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?php
-        echo nomeEsercizio($esercizio);
-        ?>
+        <?php echo nomeEsercizio($esercizio); ?>
     </title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
@@ -138,27 +136,26 @@ function nomeEsercizio($esercizio) {
             <button action="submit">Conferma</button>
         </form>
     </nav>
-    <?php
-    switch ($esercizio) {
-    case "elefante": ?>
-        <form method="post" action="elefanti/">
-            Quanti elefanti vuoi veder dondolare?
-            <input type="number" name="elefanti" min="1" max="200" value="3">
-            <br>
-            <button type="submit">Conferma!</button>
-            <button type="reset">Cancella!</button>
-        </form>
-        <?php break;
-    case "biblioteca": ?>
-        <form method="post" action="biblioteca/">
-            Quale autore vuoi trovare? [Cognome]
-            <input type="text" name="autore">
-            <br>
-            <button type="submit">Conferma!</button>
-            <button type="reset">Cancella!</button>
-        </form>
-        <?php break;
-    }
-    ?>
+<?php switch ($esercizio): ?>
+<?php case "elefante": ?>
+    <form method="post" action="elefanti/">
+        Quanti elefanti vuoi veder dondolare?
+        <input type="number" name="elefanti" min="1" max="200" value="3">
+        <br>
+        <button type="submit">Conferma!</button>
+        <button type="reset">Cancella!</button>
+    </form>
+<?php break; ?>
+<?php case "biblioteca": ?>
+    <form method="post" action="biblioteca/">
+        Quale autore vuoi trovare? [Cognome]
+        <input type="text" name="autore">
+        <br>
+        <button type="submit">Conferma!</button>
+        <button type="reset">Cancella!</button>
+    </form>
+<?php break; ?>
+<?php endswitch; ?>
+    
 </body>
 </html>
