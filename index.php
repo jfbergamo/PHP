@@ -1,25 +1,24 @@
 <?php
 
-$esercizio = isset($_GET['esercizio']) ? $_GET['esercizio'] : "biblioteca";
+$esercizio = isset($_GET['esercizio']) ? $_GET['esercizio'] : 1;
 
 switch ($esercizio) {
-    case "elefante":
-    case "biblioteca":
-    case "test":
+    case 0:
+    case 1:
+    case -1:
         break;
-    default: $esercizio = "elefante";
+    default: $esercizio = 1;
 }
 
 function nomeEsercizio($esercizio) {
     switch ($esercizio) {
-        case "elefante": return "Elefante";
-        case "biblioteca": return "Biblioteca";
+        case 0: return "Elefante";
+        case 1: return "Biblioteca";
         default: return "Sconosciuto";
     }
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,14 +129,14 @@ function nomeEsercizio($esercizio) {
     <nav>
         <form method="get">
             <select name="esercizio">
-                <option value="biblioteca">02 - Biblioteca</option>
-                <option value="elefante">01 - Elefante</option>
+                <option value="0" <?php echo ($esercizio == 0 ? "selected" : "") ?>>01 - Elefante</option>
+                <option value="1" <?php echo ($esercizio == 1 ? "selected" : "") ?>>02 - Biblioteca</option>
             </select>
             <button action="submit">Conferma</button>
         </form>
     </nav>
 <?php switch ($esercizio): ?>
-<?php case "elefante": ?>
+<?php case 0: ?>
     <form method="post" action="elefanti/">
         Quanti elefanti vuoi veder dondolare?
         <input type="number" name="elefanti" min="1" max="200" value="3">
@@ -146,7 +145,7 @@ function nomeEsercizio($esercizio) {
         <button type="reset">Cancella!</button>
     </form>
 <?php break; ?>
-<?php case "biblioteca": ?>
+<?php case 1: ?>
     <form method="post" action="biblioteca/">
         Quale autore vuoi trovare? [Cognome]
         <input type="text" name="autore">
