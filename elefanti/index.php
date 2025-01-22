@@ -1,8 +1,11 @@
 <?php
 
-function stampa_filastrocca($i) {
-    $first = $i <= 1;
-    ?>
+$elefanti = $_POST['elefanti'] ?? 1;
+$n = (is_numeric($elefanti)) ? $elefanti : 1;
+
+?>
+<?php function stampa_filastrocca($i) { ?>
+    <?php $first = $i <= 1; ?>
     <p>
         <?php echo($first ? "Un" : $i)?> elefant<?php echo($first ? "e" : "i")?> si dondolava<?php echo($first ? "" : "no")?>
         <br>
@@ -13,13 +16,7 @@ function stampa_filastrocca($i) {
         and<?php echo($first ? "ò" : "arono")?>  a chiamare un altro elefante!
         <br>
     </p>
-    <?php
-}
-
-$elefanti = $_POST['elefanti'] ?? 1;
-$n = (is_numeric($elefanti)) ? $elefanti : 1;
-
-?>
+<?php } ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
