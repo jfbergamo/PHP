@@ -5,14 +5,23 @@ $ricerca = $_GET['ricerca'] ?? '';
 
 include_once('connessione.php');
 
-$query_clienti = "SELECT *
-                  FROM clienti";
-$clienti = mysqli_fetch_all($db->query($query_clienti), MYSQLI_ASSOC);
+switch ($ricerca) {
+    case 1:
+        $query_clienti = "SELECT *
+                          FROM clienti";
+        $clienti = mysqli_fetch_all($db->query($query_clienti), MYSQLI_ASSOC);
 
-$query_mod = "SELECT tipoLegno, colore
-              FROM modelli";
-$modelli = mysqli_fetch_all($db->query($query_mod), MYSQLI_ASSOC);
-
+        $query_mod = "SELECT desMod, tipoLegno, colore
+                      FROM modelli";
+        $modelli = mysqli_fetch_all($db->query($query_mod), MYSQLI_ASSOC);
+        break;
+    case 2:
+        // ID, nome cliente, cognome cliente, data, nome modello, prezzo, agente
+        $query = "SELECT idVendita, CONCAT(nome, CONCAT(' ', cognome)) AS cliente, dataVendita, desMod, prezzo, agente
+                  FROM vendite JOIN clienti ON cliente = idCliente JOIN modelli ON modello = idMod";
+        $vendite = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC);
+        break;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,16 +52,18 @@ $modelli = mysqli_fetch_all($db->query($query_mod), MYSQLI_ASSOC);
                     <td><?php echo $cliente['indirizzo']; ?></td>
                     <td><?php echo $cliente['telefono']; ?></td>
                 </tr>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             </table>
         <h1>Modelli:</h1>
         <table>
             <tr>
+                <th>Nome</th>
                 <th>Tipo di Legno</th>
                 <th>Colore</th>
             </tr>
             <?php foreach ($modelli as $modello): ?>
             <tr>
+                <td><?php echo $modello['desMod']; ?></td>
                 <td><?php echo $modello['tipoLegno']; ?></td>
                 <td><?php echo $modello['colore']; ?></td>
             </tr>
@@ -60,6 +71,27 @@ $modelli = mysqli_fetch_all($db->query($query_mod), MYSQLI_ASSOC);
         </table>
     </div>
     <?php elseif ($ricerca == 2): ?>
+    <h1>Vendite:</h1>
+    <table>
+        <tr>
+            <th>ID Vendita</th>
+            <th>Cliente</th>
+            <th>Data vendita</th>
+            <th>Modello</th>
+            <th>Prezzo</th>
+            <th>Agente</th>
+        </tr>
+        <?php foreach ($vendite as $vendita): ?>
+        <tr>
+            <td><?php echo $vendita['idVendita']; ?></td>
+            <td><?php echo $vendita['cliente']; ?></td>
+            <td><?php echo $vendita['dataVendita']; ?></td>
+            <td><?php echo $vendita['desMod']; ?></td>
+            <td><?php echo $vendita['prezzo']; ?></td>
+            <td><?php echo $vendita['agente']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
     <?php endif; ?>
 </body>
 </html>

@@ -68,6 +68,9 @@ function nomeEsercizio($esercizio) {
     <form class="negozio" method="post" action="negozio/?ricerca=1">
         <button type="submit">Elenco di tutti i clienti e di tutti i modelli</button>
     </form>
+    <form class="negozio" method="post" action="negozio/?ricerca=2">
+        <button type="submit">Elenco di tutte le vendite</button>
+    </form>
 <?php break; ?>
 <?php endswitch; ?>
     
