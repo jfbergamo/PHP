@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-</head>
-<body>
 <?php
 
 include_once("connessione.php");
@@ -18,9 +9,19 @@ $query = "SELECT Titolo, Nome, Cognome
 $res = $db->query($query);
 
 ?>
-<?php if ($res->num_rows <= 0): ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <?php if ($res->num_rows <= 0): ?>
     <h1>Nessun libro è stato trovato per l'autore <?php echo $autore ?>!</h1>
-<?php else: ?>
+    <?php else: ?>
     <h1>Libri dell'autore</h1>
         <table>
             <tr>
@@ -29,14 +30,14 @@ $res = $db->query($query);
                 <th>Titolo</th>
             </tr>
 
-    <?php while ($riga = mysqli_fetch_array($res, MYSQLI_ASSOC)): ?>
+        <?php while ($autore = mysqli_fetch_array($res, MYSQLI_ASSOC)): ?>
         <tr>
-            <td><?php echo $riga["Nome"]    ?></td>
-            <td><?php echo $riga["Cognome"] ?></td>
-            <td><?php echo $riga["Titolo"]  ?></td>
+            <td><?php echo $autore["Nome"]    ?></td>
+            <td><?php echo $autore["Cognome"] ?></td>
+            <td><?php echo $autore["Titolo"]  ?></td>
         </tr>
-    <?php endwhile; ?>
+        <?php endwhile; ?>
     </table>
-<?php endif; ?>
+    <?php endif; ?>
 </body>
 </html>
