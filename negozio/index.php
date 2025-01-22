@@ -21,6 +21,13 @@ switch ($ricerca) {
                   FROM vendite JOIN clienti ON cliente = idCliente JOIN modelli ON modello = idMod";
         $vendite = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC);
         break;
+    case 3:
+        $cliente = $_POST['cliente'] ?? 'Sconosciuto';
+        $query = "SELECT idVendita, desMod, dataVendita, prezzo, agente
+                  FROM vendite JOIN clienti ON cliente = idCliente JOIN modelli ON modello = idMod
+                  WHERE cognome = '$cliente'";
+        $acquisti = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC);
+        break;
 }
 ?>
 <!DOCTYPE html>
