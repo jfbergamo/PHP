@@ -63,11 +63,11 @@ function nomeEsercizio($esercizio) {
         <button type="submit">Conferma!</button>
         <button type="reset">Cancella!</button>
     </form>
-<?php break; ?>
+    <?php break; ?>
 <?php case 2: ?>
-    <a href="negozio/">
-        <button>Negozio</button>
-    </a>
+    <form class="negozio" method="post" action="negozio/?ricerca=1">
+        <button type="submit">Elenco di tutti i clienti e di tutti i modelli</button>
+    </form>
 <?php break; ?>
 <?php endswitch; ?>
     

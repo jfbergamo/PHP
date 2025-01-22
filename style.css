@@ -100,3 +100,9 @@ form button[type="reset"]:hover {
     flex-direction: column;
     text-align: center;
 }
+
+.negozio {
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+}
