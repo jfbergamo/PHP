@@ -2,7 +2,7 @@
 
 define("DEFAULT_EXERCISE", 2);
 
-$esercizio = isset($_GET['esercizio']) ? $_GET['esercizio'] : DEFAULT_EXERCISE;
+$esercizio = $_GET['esercizio'] ?? DEFAULT_EXERCISE;
 
 switch ($esercizio) {
     case 0:
@@ -63,13 +63,19 @@ function nomeEsercizio($esercizio) {
         <button type="submit">Conferma!</button>
         <button type="reset">Cancella!</button>
     </form>
-    <?php break; ?>
+<?php break; ?>
 <?php case 2: ?>
     <form class="negozio" method="post" action="negozio/?ricerca=1">
         <button type="submit">Elenco di tutti i clienti e di tutti i modelli</button>
     </form>
     <form class="negozio" method="post" action="negozio/?ricerca=2">
         <button type="submit">Elenco di tutte le vendite</button>
+    </form>
+    <form class="negozio" method="post" action="negozio/?ricerca=3">
+        Inserisci il cognome del cliente:
+        <input type="text" name="cliente">
+        <button type="submit">Conferma</button>
+        <button type="reset">Cancella</button>
     </form>
 <?php break; ?>
 <?php endswitch; ?>

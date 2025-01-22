@@ -99,6 +99,27 @@ switch ($ricerca) {
         </tr>
         <?php endforeach; ?>
     </table>
+    <?php elseif ($ricerca == 3): ?>
+    <h1>Acquisti di <?php echo $cliente; ?></h1>
+    <!-- idVendita, desMod, dataVendita, prezzo, agente -->
+    <table>
+        <tr>
+            <th>ID Vendita</th>
+            <th>Nome modello</th>
+            <th>Data Vendita</th>
+            <th>Prezzo</th>
+            <th>Agente</th>
+        </tr>
+        <?php foreach ($acquisti as $acquisto): ?>
+        <tr>
+            <td><?php echo $acquisto['idVendita']; ?></td>
+            <td><?php echo $acquisto['desMod']; ?></td>
+            <td><?php echo $acquisto['dataVendita']; ?></td>
+            <td><?php echo $acquisto['prezzo']; ?></td>
+            <td><?php echo $acquisto['agente']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
     <?php endif; ?>
 </body>
 </html>
