@@ -8,6 +8,8 @@ $query = "SELECT Titolo, Nome, Cognome
           WHERE Cognome = '$autore'";
 $res = $db->query($query);
 
+mysqli_close($db);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

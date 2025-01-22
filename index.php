@@ -65,20 +65,20 @@ function nomeEsercizio($esercizio) {
     </form>
 <?php break; ?>
 <?php case 2: ?>
-    <form class="negozio" method="post" action="negozio/?ricerca=1">
-        <button type="submit">Elenco di tutti i clienti e di tutti i modelli</button>
+    <form method="post" action="negozio/modelli-e-clienti">
+        Elenca tutt i clienti e tutti i modelli del negozio.
+        <button type="submit">Conferma</button>
     </form>
-    <form class="negozio" method="post" action="negozio/?ricerca=2">
-        <button type="submit">Elenco di tutte le vendite</button>
+    <form method="post" action="negozio/vendite">
+        Elenca tutte le vendite del negozio.
+        <button type="submit">Conferma</button>
     </form>
-    <form class="negozio" method="post" action="negozio/?ricerca=3">
-        Inserisci il cognome del cliente:
+    <form method="post" action="negozio/acquisti/">
         <input type="text" name="cliente">
         <button type="submit">Conferma</button>
-        <button type="reset">Cancella</button>
+        <button type="reset">Cancella!</button>
     </form>
 <?php break; ?>
 <?php endswitch; ?>
-    
 </body>
 </html>
