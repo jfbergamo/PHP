@@ -38,7 +38,7 @@ mysqli_close($db);
         <button type="reset">Cancella!</button>
     </form>
     <div>
-        <a href="/editor"><button>Modifica i campi.</button></a>
+        <a href="editor"><button>Modifica i campi.</button></a>
     </div>
 </body>
 </html>
