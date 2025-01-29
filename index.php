@@ -67,6 +67,7 @@ function nomeEsercizio($esercizio) {
 <?php case 2: ?>
     <div>
         <a href="negozio/"><button>Accedi alla pagina del Negozio</button></a>
+        <a href="negozio2/"><button>Accedi alla pagina del Negozio 2.0!</button></a>
     </div>
 <?php break; ?>
 <?php endswitch; ?>
