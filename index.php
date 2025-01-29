@@ -65,19 +65,9 @@ function nomeEsercizio($esercizio) {
     </form>
 <?php break; ?>
 <?php case 2: ?>
-    <form method="post" action="negozio/modelli-e-clienti">
-        Elenca tutt i clienti e tutti i modelli del negozio.
-        <button type="submit">Conferma</button>
-    </form>
-    <form method="post" action="negozio/vendite">
-        Elenca tutte le vendite del negozio.
-        <button type="submit">Conferma</button>
-    </form>
-    <form method="post" action="negozio/acquisti/">
-        <input type="text" name="cliente">
-        <button type="submit">Conferma</button>
-        <button type="reset">Cancella!</button>
-    </form>
+    <div>
+        <a href="negozio/"><button>Accedi alla pagina del Negozio</button></a>
+    </div>
 <?php break; ?>
 <?php endswitch; ?>
 </body>

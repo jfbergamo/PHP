@@ -1,108 +1,157 @@
-/* Impostazioni di base per il body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #181818;
+/* Resetta alcune impostazioni di default per garantire una base uniforme */
+* {
     margin: 0;
     padding: 0;
-    color: #fff;
+    box-sizing: border-box;
 }
 
-/* Stile per l'header */
+/* Impostazioni globali per il tema scuro */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;  /* Dark background */
+    color: #ecf0f1;  /* Light text */
+    line-height: 1.6;
+    height: 100vh; /* Assicura che l'altezza della pagina occupi tutto lo schermo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Allinea i contenuti verticalmente */
+    padding: 20px;  /* Aggiunge un po' di spazio sui bordi */
+    overflow: auto;  /* Permette lo scroll se necessario */
+}
+
+/* Navbar scura */
 nav {
-    background-color: #40194d;
+    background-color: #34495e;  /* Darker shade of blue-gray */
+    color: #ecf0f1;  /* Light text */
     padding: 10px;
-    color: white;
-    text-align: center;
-}
-
-nav form {
-    display: inline-block;
-    margin: 0;
-}
-
-/* Stile per il selettore e il bottone nell'header */
-nav select {
-    padding: 8px;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-nav button {
-    padding: 8px 16px;
-    background-color: #45a049;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-nav button:hover {
-    background-color: #388e3c;
-}
-
-/* Stile per il form principale */
-form {
-    background-color: #696969;
-    border: 1px solid #696969;
     border-radius: 8px;
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 400px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;  /* Limita la larghezza della navbar */
 }
 
-/* Stile per i label, input e bottone nel form */
-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
+/* Form scuro e centrato */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center; /* Centra i contenuti all'interno del form */
+    width: 100%;
+    max-width: 500px; /* Limita la larghezza del form */
 }
 
-form input[type="text"] {
-    width: 95%;
+/* Input e Select con bordi più chiari per contrasto */
+select, input[type="number"], input[type="text"], button {
     padding: 10px;
-    border: 1px solid #727272;
-    border-radius: 4px;
     font-size: 16px;
-    background-color: #727272;
-    color:#fff
+    border-radius: 5px;
+    border: 1px solid #7f8c8d;  /* Lighter gray border */
+    background-color: #2c3e50;  /* Darker background for inputs */
+    color: #ecf0f1;  /* Light text */
 }
 
+/* Rimpicciolisci e centra i bottoni submit e reset */
 form button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    margin-right: 10px;
+    width: auto;
+    padding: 8px 16px; /* Meno padding per rimpicciolire i bottoni */
+    font-size: 14px; /* Font più piccolo */
+    margin: 5px auto; /* Centrato orizzontalmente con una piccola distanza tra i bottoni */
+    display: block; /* Rende i bottoni dei blocchi per centrarli */
 }
 
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Stile per il bottone di reset */
+/* Separazione tra i due bottoni (submit e reset) */
 form button[type="reset"] {
-    background-color: #f44336;
+    background-color: #e74c3c; /* Rosso per il bottone reset */
+}
+
+form button[type="submit"] {
+    background-color: #3498db; /* Blu per il bottone submit */
+}
+
+/* Hover per entrambi i bottoni */
+form button[type="submit"]:hover {
+    background-color: #2980b9;
 }
 
 form button[type="reset"]:hover {
-    background-color: #d32f2f;
+    background-color: #c0392b;
 }
 
-.elefante {
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+/* Stili per il link del Negozio */
+div a button {
+    background-color: #16a085;  /* Teal color for the button */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    max-width: 250px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+}
+
+div a button:hover {
+    background-color: #1abc9c;  /* Brighter teal on hover */
+}
+
+/* Stile per il titolo */
+h1 {
+    font-size: 2rem;
+    color: #ecf0f1;  /* Light text */
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.negozio {
-    justify-content: center;
-    align-items: center;
-    flex: auto;
+/* Tabelle */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #34495e;  /* Dark background for tables */
+    border-radius: 8px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #7f8c8d;  /* Lighter border for table rows */
+}
+
+table th {
+    background-color: #2c3e50;  /* Slightly darker background for table headers */
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #2c3e50;  /* Alternating row colors */
+}
+
+table tr:hover {
+    background-color: #16a085;  /* Hover effect for rows */
+}
+
+/* Rendi responsive il layout per dispositivi mobili */
+@media (max-width: 768px) {
+    nav {
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    div a button {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    table {
+        width: 95%; /* Riduci la larghezza della tabella su dispositivi mobili */
+    }
 }
