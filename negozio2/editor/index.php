@@ -12,8 +12,8 @@ $cliente = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC)[0];
 function acquisti($idCliente) {
     global $db;
     $query = "SELECT idVendita, dataVendita, desMod, prezzo, agente
-          FROM vendite JOIN clienti ON idCliente = cliente JOIN modelli ON idMod = modello
-          WHERE idCliente = '$idCliente'";
+              FROM vendite JOIN clienti ON idCliente = cliente JOIN modelli ON idMod = modello
+              WHERE idCliente = '$idCliente'";
     $acquisti = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC);
     return $acquisti;
 }
@@ -27,7 +27,6 @@ function modelli() {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,21 +80,21 @@ function modelli() {
         </tr>
         <?php endforeach; ?>
     </table>
-    <h2>Inserisci un nuovo acquisto</h>
+    <h2>Inserisci un nuovo acquisto</h2>
     <form id="aggiungi" action="inserisci.php?cliente=<?php echo $idCliente; ?>" method="post">
-        Modello:
+        <label for="modello">Modello:</label>
         <select name="modello">
             <?php foreach (modelli() as $modello): ?>
             <option value="<?php echo $modello['idMod']; ?>"><?php echo $modello['desMod']; ?></option>
             <?php endforeach; ?>
         </select>
-        Data vendita:
+        <label for="dataVendita">Data vendita:</label>
         <input type="date" name="dataVendita">
         <br>
-        Prezzo:
+        <label for="prezzo">Prezzo:</label>
         <input type="number" name="prezzo">
         <br>
-        Agente:
+        <label for="agente">Agente:</label>
         <input type="text" name="agente">
         
         <button type="submit">Conferma</button>
