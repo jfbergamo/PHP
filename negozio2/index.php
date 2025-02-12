@@ -1,5 +1,9 @@
 <?php
 
+// Il codice di base dell'esercizio e' stato scritto da J. Bergamasco
+// https://github.com/jfbergamo/PHP/tree/main/negozio
+// Tutte le modifiche sull'editor del db sono state scritte da Jacopo Bergamasco e Loris G. Mandra
+
 include_once("connessione.php");
 
 $query = "SELECT idCliente, CONCAT(nome, CONCAT(' ', cognome)) AS cliente
@@ -16,7 +20,7 @@ mysqli_close($db);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Negozio</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏪</text></svg>">
 </head>
 <body>

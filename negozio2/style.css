@@ -1,0 +1,141 @@
+/* Foglio di stile scritto da Loris G. Mandra */
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+/* Viene utilizzato rem perchè è una misura relativa rispetto a px */
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+    background: #fff;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Container principale */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+/* Intestazioni */
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+}
+
+/* Linea sotto il titolo che si muove con effetto (fatto con chatgpt)*/
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(45deg, #FF5722, #03A9F4);
+    animation: lineMovement 2s ease-in-out infinite alternate;
+}
+
+/* Animazione della linea sotto il titolo (fatto con chatgpt)*/
+@keyframes lineMovement {
+    0% {
+        transform: translateX(-50%) scaleX(1);
+    }
+    100% {
+        transform: translateX(-50%) scaleX(1.5);
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: #f4f4f4;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:hover {
+    background: #eaeaea;
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+select, button {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 4px;
+}
+
+select:focus, button:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+button {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background: #384c61;
+    transform: translateY(-1px);
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
