@@ -33,16 +33,22 @@ mysqli_close($db);
         <button type="submit">Conferma</button>
     </form>
     <form method="post" action="acquisti/">
+        Elenca gli acquisti del cliente:
         <select name="cliente">
             <?php foreach ($clienti as $cliente): ?>
             <option value="<?php echo $cliente['idCliente']; ?>"><?php echo $cliente['cliente'];?></option>
             <?php endforeach; ?>
         </select>
         <button type="submit">Conferma</button>
-        <button type="reset">Cancella!</button>
     </form>
-    <div>
-        <a href="editor"><button>Modifica i campi.</button></a>
-    </div>
+    <form action="editor/" method="get">
+        Modifica:
+        <select name="cliente">
+            <?php foreach ($clienti as $cliente): ?>
+            <option value="<?php echo $cliente['idCliente']; ?>"><?php echo $cliente['cliente']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Conferma</button>
+    </form>
 </body>
 </html>
