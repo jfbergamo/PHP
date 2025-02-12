@@ -76,7 +76,7 @@ function modelli() {
             <td><?php echo $acquisto['desMod']; ?></td>
             <td><?php echo $acquisto['prezzo']; ?></td>
             <td><?php echo $acquisto['agente']; ?></td>
-            <td><button>Modifica</button></td>
+            <td><a href="modifica.php?acquisto=<?php echo $acquisto['idVendita']; ?>"><button>Modifica</button></a></td>
             <td><button onclick="cancella(<?php echo $acquisto['idVendita'] ?>)">Cancella</button></td>
         </tr>
         <?php endforeach; ?>
