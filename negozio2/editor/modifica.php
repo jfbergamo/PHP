@@ -1,5 +1,7 @@
 <?php
 
+// Bergamasco Jacopo & Loris G. Mandra, 5AIA, A.S. 2024-2025
+
 $acquisto = $_GET['acquisto'] ?? '';
 
 include_once "../connessione.php";
@@ -11,15 +13,19 @@ $vendita = mysqli_fetch_all($db->query($query), MYSQLI_ASSOC)[0];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $idModello = $_POST['modello'];
+    if (isset($_POST['modello']) && isset($_POST['dataVendita']) && isset($_POST['prezzo']) && isset($_POST['agente'])):
+
+    $idModello =   $_POST['modello'];
     $dataVendita = $_POST['dataVendita'];
-    $prezzo = $_POST['prezzo'];
-    $agente = $_POST['agente'];
+    $prezzo =      $_POST['prezzo'];
+    $agente =      $_POST['agente'];
 
     $updateQuery = "UPDATE vendite
                     SET modello = $idModello, dataVendita = DATE('$dataVendita'), prezzo = $prezzo, agente = '$agente'
                     WHERE idVendita = $acquisto";
     $db->query($updateQuery);
+
+    endif;
 
     header("Location: index.php?cliente=" . $vendita['idCliente']);
     die();

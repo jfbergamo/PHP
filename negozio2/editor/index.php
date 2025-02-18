@@ -1,5 +1,7 @@
 <?php
 
+// Bergamasco Jacopo & Loris G. Mandra, 5AIA, A.S. 2024-2025
+
 include_once("../connessione.php");
 
 $idCliente = $_GET['cliente'] ?? 0;
