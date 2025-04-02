@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS galleriadb;
+
+USE galleriadb;
+
+CREATE TABLE IF NOT EXISTS utenti (
+    ID_utente INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS immagini (
+    ID_immagine INT AUTO_INCREMENT PRIMARY KEY,
+    FK_ID_utente INT NOT NULL,
+    nome_file VARCHAR(500) NOT NULL,
+    data_upload VARCHAR(50) NOT NULL,
+    CONSTRAINT utente FOREIGN KEY (FK_ID_utente) REFERENCES utenti(ID_utente) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+GRANT INSERT, UPDATE, DELETE, SELECT ON galleriadb.* TO 'jbergamo'@'%' IDENTIFIED BY 'lozanusso';
