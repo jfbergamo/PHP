@@ -36,11 +36,11 @@ mysqli_close($db);
         </tr>
         <?php foreach ($acquisti as $acquisto): ?>
         <tr>
-            <td><?php echo $acquisto['idVendita']; ?></td>
-            <td><?php echo $acquisto['dataVendita']; ?></td>
-            <td><?php echo $acquisto['desMod']; ?></td>
-            <td><?php echo $acquisto['prezzo']; ?></td>
-            <td><?php echo $acquisto['agente']; ?></td>
+            <td><?= $acquisto['idVendita']; ?></td>
+            <td><?= $acquisto['dataVendita']; ?></td>
+            <td><?= $acquisto['desMod']; ?></td>
+            <td><?= $acquisto['prezzo']; ?></td>
+            <td><?= $acquisto['agente']; ?></td>
         </tr>
         <?php endforeach; ?>
     </table>

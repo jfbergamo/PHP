@@ -4,7 +4,7 @@ session_start();
 
 include_once "utils.php";
 
-if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])) {
+if (isset($_POST['username'], $_POST['password'], $_POST['password_confirm'])) {
     if ($_POST['password'] == $_POST['password_confirm']) {
         addUser($_POST['username'], $_POST['password']);
         $_SESSION['userID'] = getUserID($_POST['username']);
