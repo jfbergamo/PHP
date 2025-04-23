@@ -4,7 +4,7 @@ session_start();
 
 include_once "utils.php";
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['username'], $_POST['password'])) {
     if (login($_POST['username'], $_POST['password'])) {
         $_SESSION['userID'] = getUserID($_POST['username']);
     } else {
@@ -12,7 +12,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 }
 
-$login = isset($_SESSION['userID']);
+$login = isset($_SESSION['userID']) && userExists($_SESSION['userID']);
 
 if ($login) {
     header('Location: index.php');

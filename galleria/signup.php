@@ -13,7 +13,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['password_confirm'])) {
     }
 }
 
-$login = isset($_SESSION['userID']) && $_SESSION['userID'] != 0;
+$login = isset($_SESSION['userID']) && userExists($_SESSION['userID']);
 
 if ($login) {
     header('Location: index.php');
