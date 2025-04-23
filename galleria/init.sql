@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS immagini (
     ID_immagine INT AUTO_INCREMENT PRIMARY KEY,
     FK_ID_utente INT NOT NULL,
     data_upload VARCHAR(50) NOT NULL,
+    descrizione TEXT,
     CONSTRAINT utente FOREIGN KEY (FK_ID_utente) REFERENCES utenti(ID_utente) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 

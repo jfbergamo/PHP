@@ -6,22 +6,30 @@ include_once "utils.php";
 
 $login = isset($_SESSION['userID']) && userExists($_SESSION['userID']);
 
+if (isset($_POST['delete'])) {
+    $img = $_POST['img'];
+    $query = "DELETE FROM immagini WHERE ID_immagine = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('i', $img);
+    $stmt->execute();
+}
+
 $filename = null;
 $error = null;
 
-if ($login && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_FILES)) {
+if ($login && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['upload'])) {
     [$filename, $error] = uploadFile("file");
     if ($error == null) {
-        $query = "INSERT INTO immagini (FK_ID_utente, data_upload) VALUES (?, ?)";
+        $query = "INSERT INTO immagini (FK_ID_utente, data_upload, descrizione) VALUES (?, ?, ?)";
         $stmt = $db->prepare($query);
-        $stmt->bind_param("is", $_SESSION["userID"], $filename);
+        $stmt->bind_param("iss", $_SESSION["userID"], $filename, $_POST['descrizione']);
         $stmt->execute();
     }
 }
 
 function getImgs() {
     global $db;
-    $query = "SELECT username, data_upload
+    $query = "SELECT *
               FROM immagini JOIN utenti ON FK_ID_utente = ID_utente";
     return $db->query($query)->fetch_all(MYSQLI_ASSOC);
 }
@@ -34,6 +42,7 @@ function getImgs() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galleria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="x-icon" href="favicon.ico">
     <style>
         .img-btn {
             background-color: #181818;
@@ -73,18 +82,31 @@ function getImgs() {
     
     <main class="container text-center">
         <?php if ($error != null): ?>
-        <div class="alert alert-danger">
+        <div class="mt-3 alert alert-danger">
             <?= $error; ?>
         </div>
         <?php endif; ?>
+        <div class="mt-3 alert alert-info">
+            TODO: like
+        </div>
         <h1 class="mt-3">Immagini</h1>
         
         <?php foreach (getImgs() as $img): ?>
         <div class="container rounded img-btn my-4" style="width: 500px">
-            <div class="text-start px-3 pt-3 pb-1">
-                <h3><?= $img['username']; ?></h3>
+            <div class="text-start ps-3 pe-1 pt-3 pb-1 d-flex justify-content-between">
+                <h4><?= $img['username']; ?></h4>
+                <?php if ($login && $img['ID_utente'] == $_SESSION['userID']): ?>
+                <form method="POST" id="delete">
+                    <input type="hidden" name="img" value="<?= $img['ID_immagine'] ?>">
+                    <input type="hidden" name="delete">
+                    <button class="btn btn-danger">🗑</button>
+                </form>
+                <?php endif; ?>
             </div>
-            <img class="rounded pb-3" src="<?= $img['data_upload']; ?>" width="100%">
+            <img class="rounded" src="<?= $img['data_upload']; ?>" width="100%">
+            <div class="text-start px-2 pt-3 pb-1">
+                <p><?= $img['descrizione'] ?></p>
+            </div>
         </div>
         <?php endforeach; ?>
 
@@ -98,8 +120,10 @@ function getImgs() {
                     <div class="modal-body container text-center">
                         <h2 class="mb-3">Carica un file</h2>
                         <input type="file" name="file" required>
+                        <textarea class="mt-3" name="descrizione" placeholder="Descrizione"></textarea>
                         <p class="mt-3">
-                            <button type="submit" class="btn btn-primary">Carica</button>
+                            <input type="hidden" name="upload">
+                            <button type="submit"class="btn btn-primary">Carica</button>
                         </p>
                     </div>
                 </form>
@@ -108,5 +132,16 @@ function getImgs() {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const deleteForm = document.getElementById('delete');
+        if (deleteForm) {
+            deleteForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (confirm("Sei sicuro di voler eliminare l'elemento?")) {
+                    deleteForm.submit();
+                }
+            })
+        }
+    </script>
 </body>
 </html>
