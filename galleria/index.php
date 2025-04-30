@@ -6,6 +6,24 @@ include_once "utils.php";
 
 $login = isset($_SESSION['userID']) && userExists($_SESSION['userID']);
 
+if (isset($_GET['like'])) {
+    if ($login) {
+        $stmt = $db->prepare("INSERT INTO likes VALUES (?,?)");
+        $stmt->bind_param("ii", $_SESSION['userID'], $_GET['like']);
+        $stmt->execute();
+    }
+    die();
+}
+
+if (isset($_GET['dislike'])) {
+    if ($login) {
+        $stmt = $db->prepare("DELETE FROM likes WHERE FK_ID_utente = ? AND FK_ID_immagine = ?");
+        $stmt->bind_param("ii", $_SESSION['userID'], $_GET['dislike']);
+        $stmt->execute();
+    }
+    die();
+}
+
 if (isset($_POST['delete'])) {
     $img = $_POST['img'];
     $query = "DELETE FROM immagini WHERE ID_immagine = ?";
@@ -32,6 +50,26 @@ function getImgs() {
     $query = "SELECT *
               FROM immagini JOIN utenti ON FK_ID_utente = ID_utente";
     return $db->query($query)->fetch_all(MYSQLI_ASSOC);
+}
+
+function getLikes($id) {
+    global $db;
+    // Nessun preparedStatement necessario in quanto la funzione e' interna al programma
+    $query = "SELECT username
+              FROM likes JOIN utenti ON FK_ID_utente = ID_utente
+              WHERE FK_ID_immagine = $id";
+    return array_map(fn($e) => $e['username'], $db->query($query)->fetch_all(MYSQLI_ASSOC));
+}
+
+function liked($id) {
+    global $db;
+    $stmt = $db->prepare("SELECT *
+                          FROM likes
+                          WHERE FK_ID_immagine = ? AND FK_ID_utente = ?");
+    $stmt->bind_param("ii", $id, $_SESSION['userID']);
+    $stmt->execute();
+
+    return $stmt->get_result()->fetch_assoc() != null;
 }
 
 ?>
@@ -104,8 +142,27 @@ function getImgs() {
                 <?php endif; ?>
             </div>
             <img class="rounded" src="<?= $img['data_upload']; ?>" width="100%">
-            <div class="text-start px-2 pt-3 pb-1">
-                <p><?= $img['descrizione'] ?></p>
+            <div class="d-flex justify-content-between">
+                <div class="text-start px-2 pt-3 pb-1">
+                    <p><?= $img['descrizione'] ?></p>
+                </div>
+                <?php if ($login): ?>
+                <div class="btn-group py-2">
+                    <?php if (liked($img['ID_immagine'])): ?>
+                    <button class="btn btn-secondary" onclick="dislike(<?= $img['ID_immagine']; ?>)">💘</button>
+                    <?php else: ?>
+                    <button class="btn btn-secondary" onclick="like(<?= $img['ID_immagine']; ?>)">🖤</button>
+                    <?php endif; ?>
+                    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <?php foreach (getLikes($img['ID_immagine']) as $utente): ?>
+                        <li class="dropdown-item"><?= $utente; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
         <?php endforeach; ?>
@@ -141,6 +198,12 @@ function getImgs() {
                     deleteForm.submit();
                 }
             })
+        }
+        function like(id) {
+            fetch(`?like=${id}`).then(() => location.reload());
+        }
+        function dislike(id) {
+            fetch(`?dislike=${id}`).then(() => location.reload());
         }
     </script>
 </body>

@@ -16,4 +16,10 @@ CREATE TABLE IF NOT EXISTS immagini (
     CONSTRAINT utente FOREIGN KEY (FK_ID_utente) REFERENCES utenti(ID_utente) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS likes (
+    FK_ID_utente INT REFERENCES utenti(ID_utente),
+    FK_ID_immagine INT REFERENCES immagini(ID_immagine),
+    CONSTRAINT likes PRIMARY KEY (FK_ID_utente, FK_ID_immagine)
+);
+
 GRANT INSERT, UPDATE, DELETE, SELECT ON galleriadb.* TO 'jbergamo'@'%' IDENTIFIED BY 'lozanusso';
