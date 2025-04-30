@@ -125,7 +125,7 @@ function liked($id) {
         </div>
         <?php endif; ?>
         <div class="mt-3 alert alert-info">
-            TODO: like
+            TODO: commenti?
         </div>
         <h1 class="mt-3">Immagini</h1>
         
@@ -146,21 +146,26 @@ function liked($id) {
                 <div class="text-start px-2 pt-3 pb-1">
                     <p><?= $img['descrizione'] ?></p>
                 </div>
+                <?php $likes = getLikes($img['ID_immagine']); ?>
                 <?php if ($login): ?>
                 <div class="btn-group py-2">
                     <?php if (liked($img['ID_immagine'])): ?>
-                    <button class="btn btn-secondary" onclick="dislike(<?= $img['ID_immagine']; ?>)">💘</button>
+                    <button class="btn btn-secondary" onclick="dislike(<?= $img['ID_immagine']; ?>)"><?= count($likes) ?> <span>💘</span></button>
                     <?php else: ?>
-                    <button class="btn btn-secondary" onclick="like(<?= $img['ID_immagine']; ?>)">🖤</button>
+                    <button class="btn btn-secondary" onclick="like(<?= $img['ID_immagine']; ?>)"><?= count($likes) ?> <span>🖤</span></button>
                     <?php endif; ?>
                     <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <?php foreach (getLikes($img['ID_immagine']) as $utente): ?>
+                        <?php foreach ($likes as $utente): ?>
                         <li class="dropdown-item"><?= $utente; ?></li>
                         <?php endforeach; ?>
                     </ul>
+                </div>
+                <?php else: ?>
+                <div class="btn-group py-2">
+                    <button class="btn btn-secondary"><?= count($likes) ?> <span>❤</span></button>
                 </div>
                 <?php endif; ?>
             </div>
