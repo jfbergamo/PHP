@@ -72,7 +72,16 @@ function getImgs() {
     global $db;
     $query = "SELECT *
               FROM immagini JOIN utenti ON FK_ID_utente = ID_utente";
-    return $db->query($query)->fetch_all(MYSQLI_ASSOC);
+    $imgs = $db->query($query)->fetch_all(MYSQLI_ASSOC);
+    if (count($imgs) === 0) return array(array(
+        // ^ se non ci sono immagini, crea un placeholder che invita l'utente a registrarsi
+        "username" => "Non ci sono immagini",
+        "ID_utente" => 0,
+        "ID_immagine" => 0,
+        "descrizione" => 'Caricane una tu!',
+        "data_upload" => 'uploads/placeholder.png'
+    ));
+    return $imgs;
 }
 
 // Ottiene tutti i like di un'immagine dato il suo ID
