@@ -1,9 +1,17 @@
 <?php
 
+// Bergamasco Jacopo, 5AIA, A.S. 2024-2025
+
+// File: login.php
+// Pagina di login per l'utente
+// Il login è controllato dalla presenza del campo 'userID' nella sessione.
+//  Tale campo contiene l'ID dell'utente loggato che viene controllato quando necessario con la funzione userExists()
+
 session_start();
 
 include_once "utils.php";
 
+// Logica di login
 if (isset($_POST['username'], $_POST['password'])) {
     if (login($_POST['username'], $_POST['password'])) {
         $_SESSION['userID'] = getUserID($_POST['username']);
@@ -12,10 +20,12 @@ if (isset($_POST['username'], $_POST['password'])) {
     }
 }
 
+// Logica del controllo del login
 $login = isset($_SESSION['userID']) && userExists($_SESSION['userID']);
 
 if ($login) {
     header('Location: index.php');
+    // ^ Se l'utente ha già effettuato l'accesso viene reindirizzato alla schermata principale
 }
 
 ?>
@@ -26,17 +36,20 @@ if ($login) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galleria</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- ^ I fogli di stile utilizzati sono parte del framework Bootstrap5 (https://getbootstrap.com/) -->
 </head>
 <body>
     <div class="container text-center my-4">
       
         <?php if (isset($error)): ?>
+        <!-- In caso di errore mostra un alert col messaggio di errore. (esempio: Accesso negato) -->
         <div class="alert alert-danger">
             <?= $error; ?>
         </div>
         <?php endif; ?>
             
         <h1>Accedi</h1>
+        <!-- Semplice form di login -->
         <form method="POST" class="mt-3">
             <p>
                 <input type="text" placeholder="Nome utente" name="username" required>
@@ -50,5 +63,7 @@ if ($login) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- ^ componente JavaScript del framework Bootstrap5 -->
 </body>
 </html>
+<!-- eof -->

@@ -1,9 +1,19 @@
 <?php
 
+// Bergamasco Jacopo, 5AIA, A.S. 2024-2025
+
+// File: utils.php
+// Insieme di utilità per la webapp.
+// Contiene: 
+// - Funzioni prestabilite per query al DB
+// - Funzioni per il caricamento dei file
+
 // ==================================== DB ====================================
 
+// Inizializza la connessione al database nella variabile $db
 $db = new mysqli("localhost", "jbergamo", "lozanusso", "galleriadb");
 
+// Ottiene l'ID dell'utente dato il suo username
 function getUserID($username): int {
     global $db;
     $query = "SELECT ID_utente
@@ -16,6 +26,7 @@ function getUserID($username): int {
     return $stmt->get_result()->fetch_assoc()['ID_utente'] ?? 0;
 }
 
+// Controlla se l'utente di un ID dato esiste nel db
 function userExists($id) {
     global $db;
     $query = "SELECT *
@@ -28,6 +39,8 @@ function userExists($id) {
     return $stmt->get_result()->fetch_assoc() != null;
 }
 
+// Verifica le credenziali di un utente
+// Ritorna un bool che indica la riuscita autenticazione
 function login($username, $password) {
     global $db;
     $query = "SELECT password_hash
@@ -37,23 +50,31 @@ function login($username, $password) {
     $userID = getUserID($username);
     $stmt->bind_param("i", $userID);
     $stmt->execute();
+
     if ($user = $stmt->get_result()->fetch_assoc()) {
         return password_verify($password, $user['password_hash']);
-    }
+        //              ^ La password criptata viene verificata con la funzione password_verify()
+    } // In caso non esistano utenti nel db con tale ID l'autenticazione fallisce in automatico
     return false;
 }
 
+// Inserisce un nuovo utente nel db dati nome utente e password
 function addUser($username, $password) {
     global $db;
     $query = "INSERT INTO utenti (username, password_hash) VALUES (?, ?)";
     $stmt = $db->prepare($query);
     $hash = password_hash($password, PASSWORD_DEFAULT);
+    // ^ La password viene criptata con un algoritmo di hashing e inserita nel database
     $stmt->bind_param("ss", $username, $hash);
     $stmt->execute();
 }
 
 // ==================================== FILES ====================================
 
+// Carica un file nel filesystem del server
+// $file è il nome che il file assume nella richiesta POST
+// La funzione ritorna un array codificato in forma [$target, $error],
+//  in cui $target è il percorso del file salvato e $error è l'eventuale errore riscontrato durante l'esecuzione
 function uploadFile($file) {
     $filename = $_FILES[$file]["name"];
     $dir = "uploads/";
@@ -86,3 +107,5 @@ function uploadFile($file) {
 
     return [$target, null];
 }
+
+// eof
