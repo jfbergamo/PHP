@@ -191,7 +191,7 @@ function liked($id) {
                 <!-- L'utente loggato può mettere e togliere like alle immagini -->
                 <!-- Il pulsante, inoltre, mostra i nomi degli utenti che hanno messo like -->
                 <?php $likes = getLikes($img['ID_immagine']); ?>
-                <?php if ($login): ?>
+                <?php if ($login && $img['ID_immagine'] != 0): ?>
                 <div class="btn-group py-2">
                     <?php if (liked($img['ID_immagine'])): ?>
                     <button class="btn btn-secondary" onclick="dislike(<?= $img['ID_immagine']; ?>)"><?= count($likes) ?> <span>💘</span></button>
