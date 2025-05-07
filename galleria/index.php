@@ -45,10 +45,12 @@ if (isset($_GET['dislike'])) {
 // L'utente può cancellare solo le immagini caricate da lui
 if (isset($_POST['delete'])) {
     $img = $_POST['img']; // L'ID dell'immagine è contenuto nel parametro 'img'
+    $target = getFileName($img);
     $query = "DELETE FROM immagini WHERE ID_immagine = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('i', $img);
     $stmt->execute();
+    if (file_exists($target)) unlink($target);
 }
 
 // Parametri per il caricamento del file

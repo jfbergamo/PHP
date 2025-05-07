@@ -110,4 +110,14 @@ function uploadFile($file) {
     return [$target, null];
 }
 
+function getFileName($id) {
+    global $db;
+    $stmt = $db->prepare("SELECT data_upload
+                          FROM immagini
+                          WHERE ID_immagine = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc()['data_upload'] ?? '';
+}
+
 // eof
