@@ -61,6 +61,7 @@ function login($username, $password) {
 // Inserisce un nuovo utente nel db dati nome utente e password
 function addUser($username, $password) {
     if (userExists(getUserID($username))) return false;
+    // ^ Se esiste gia' un utente con quel nome ritorna un errore
     global $db;
     $query = "INSERT IGNORE INTO utenti (username, password_hash) VALUES (?, ?)";
     $stmt = $db->prepare($query);
@@ -110,6 +111,7 @@ function uploadFile($file) {
     return [$target, null];
 }
 
+// Ottiene il nome del file di un'immagine dato il suo ID
 function getFileName($id) {
     global $db;
     $stmt = $db->prepare("SELECT data_upload
