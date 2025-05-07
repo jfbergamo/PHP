@@ -60,13 +60,15 @@ function login($username, $password) {
 
 // Inserisce un nuovo utente nel db dati nome utente e password
 function addUser($username, $password) {
+    if (userExists(getUserID($username))) return false;
     global $db;
-    $query = "INSERT INTO utenti (username, password_hash) VALUES (?, ?)";
+    $query = "INSERT IGNORE INTO utenti (username, password_hash) VALUES (?, ?)";
     $stmt = $db->prepare($query);
     $hash = password_hash($password, PASSWORD_DEFAULT);
     // ^ La password viene criptata con un algoritmo di hashing e inserita nel database
     $stmt->bind_param("ss", $username, $hash);
     $stmt->execute();
+    return true;
 }
 
 // ==================================== FILES ====================================

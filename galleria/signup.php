@@ -16,8 +16,11 @@ include_once "utils.php";
 if (isset($_POST['username'], $_POST['password'], $_POST['password_confirm'])) {
     if ($_POST['password'] == $_POST['password_confirm']) {
         // ^ Controllo che le password corrispondano
-        addUser($_POST['username'], $_POST['password']);
-        $_SESSION['userID'] = getUserID($_POST['username']);
+        if (addUser($_POST['username'], $_POST['password'])) {
+            $_SESSION['userID'] = getUserID($_POST['username']);
+        } else {
+            $error = 'Esiste gia\' un utente con quel nome.';
+        }
         // ^ Inserimento dell'ID dell'utente nella sessione
     } else {
         $error = "Le password non corrispondono!";
